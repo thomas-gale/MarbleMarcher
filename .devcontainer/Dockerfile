@@ -25,6 +25,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 RUN apt-get update \
     && apt-get install -y pulseaudio-utils
 
+COPY pulse-client.conf /etc/pulse/client.conf
+
 # Pre-requsities and development tools.
 RUN apt-get update \
     && apt-get install -y software-properties-common \

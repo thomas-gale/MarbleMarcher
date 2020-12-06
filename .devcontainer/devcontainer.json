@@ -2,6 +2,7 @@
 	"name": "vscode-ubuntu-cuda-gl-cpp-dev",
 	"build": {
 		"dockerfile": "Dockerfile",
+		"context": ".."
 	},
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
@@ -25,12 +26,8 @@
 		"/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding (mount X11 in container)
 		"--gpus",
 		"all", // Pass GPU support into container
-		"--device", // Pass in sound support 
-		"/dev/snd",
-		"-v", 
-		"/run/dbus/:/run/dbus/",
-		"-v",
-		"/dev/shm:/dev/shm"
+		"-v", // Pulseaudio sound (change to host user id.)
+		"/run/user/1000/pulse:/run/user/1000/pulse"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
